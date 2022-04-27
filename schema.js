@@ -1,11 +1,13 @@
 const axios = require('axios');
 const dotenv = require('dotenv');
-const { GraphQLSchema } = require('graphql');
-const { GraphQLInt } = require('graphql');
-const { GraphQLBoolean } = require('graphql');
-const { GraphQLString } = require('graphql');
-const { GraphQLList } = require('graphql');
-const { GraphQLObjectType } = require('graphql');
+const { 
+  GraphQLSchema, 
+  GraphQLInt, 
+  GraphQLBoolean, 
+  GraphQLString, 
+  GraphQLList, 
+  GraphQLObjectType
+} = require('graphql');
 
 dotenv.config();
 
