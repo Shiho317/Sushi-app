@@ -1,15 +1,23 @@
 const express = require('express');
 const app = express();
 const cors = require('cors');
-const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
+const { graphqlHTTP } = require('express-graphql');
+const schema = require('./schema');
 
 dotenv.config();
 
 app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.static('public'));
 
-//get Token
+app.use(
+  '/graphql',
+  graphqlHTTP({
+    schema,
+    graphiql: true
+  })
+);
 
-app.post('')
+const port = process.env.PORT || 8888;
+
+app.listen(port, () => console.log(`server is listening at ${port}.`))
