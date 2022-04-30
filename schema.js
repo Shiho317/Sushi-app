@@ -2,7 +2,7 @@ const axios = require('axios');
 const dotenv = require('dotenv');
 const { 
   GraphQLSchema, 
-  GraphQLInt, 
+  GraphQLFloat, 
   GraphQLBoolean, 
   GraphQLString, 
   GraphQLList, 
@@ -14,8 +14,8 @@ dotenv.config();
 const CoordinatesType = new GraphQLObjectType({
   name: 'CoordinatesType',
   fields: () => ({
-    latitude: {type: GraphQLInt},
-    longitude: {type: GraphQLInt}
+    latitude: {type: GraphQLFloat},
+    longitude: {type: GraphQLFloat}
   })
 })
 
@@ -26,15 +26,15 @@ const LocationType = new GraphQLObjectType({
   })
 })
 
-const BuisinessType = new GraphQLObjectType({
-  name: 'BuisinessType',
+const BusinessType = new GraphQLObjectType({
+  name: 'BusinessType',
   fields: () => ({
     id: {type: GraphQLString},
     name: {type: GraphQLString},
     image_url: {type: GraphQLString},
     is_closed: {type: GraphQLBoolean},
-    review_count: {type: GraphQLInt},
-    rating: {type: GraphQLInt},
+    review_count: {type: GraphQLFloat},
+    rating: {type: GraphQLFloat},
     coordinates: {type: CoordinatesType},
     price: {type: GraphQLString},
     location: {type: LocationType},
@@ -45,8 +45,8 @@ const BuisinessType = new GraphQLObjectType({
 const RootQueryType = new GraphQLObjectType({
   name: 'RootQueryType',
   fields: {
-    buisinesses: {
-      type: new GraphQLList(BuisinessType),
+    restaurants: {
+      type: new GraphQLList(BusinessType),
       resolve(parent, args) {
         return axios
           .get('https://api.yelp.com/v3/businesses/search?term=sushi&location=Vancouver', {
@@ -54,11 +54,29 @@ const RootQueryType = new GraphQLObjectType({
               'Authorization': `Bearer ${process.env.YELP_API_KEY}`
             }
           })
-          .then(res => res.data)
+          .then(res => res.data.businesses)
       }
     }
   }
 });
+
+// const RootQueryType = new GraphQLObjectType({
+//   name: 'RootQueryType',
+//   fields: {
+//     businesses: {
+//       type: new GraphQLList(BusinessType),
+//       resolve(parent, args) {
+//         return axios
+//           .get('https://api.yelp.com/v3/businesses/search?term=sushi&location=Vancouver', {
+//             headers: {
+//               'Authorization': `Bearer ${process.env.YELP_API_KEY}`
+//             }
+//           })
+//           .then(res => res.data)
+//       }
+//     }
+//   }
+// });
 
 module.exports = new GraphQLSchema({
   query: RootQueryType
