@@ -15,11 +15,13 @@
 }
 
 .restaurant-reviews {
-
+  color: yellow;
+  display: flex;
+  gap: 0.5rem;
 }
 
 .restaurant-reviews p{
-
+  color: var(--black-color);
 }
 
 .restaurant-open {
@@ -39,13 +41,13 @@
 }
 
 .isClosed {
-
+  color: red;
 }
 
 .isOpen {
-
+  color: green;
 }
 
 .price-rage {
-  
+  color: green;
 }
