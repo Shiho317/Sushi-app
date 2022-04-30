@@ -15,6 +15,7 @@ const RESTAURANTS_DATA = gql`
       id
       name
       image_url
+      url
       is_closed
       review_count
       rating
@@ -67,7 +68,14 @@ const Restaurants = () => {
         style={{width: '100%', height: '100%'}}
         mapStyle="mapbox://styles/mapbox/streets-v9">
         {data.restaurants.map(restaurant => (
-          <Pins data={restaurant} opens={data.opens} handleMakerClick={handleMakerClick} isCurrent={isCurrent} setIsCurrent={setIsCurrent} isCurrentView={isCurrentView}/>
+          <Pins 
+            key={restaurant.id} 
+            data={restaurant} 
+            opens={data.opens} 
+            handleMakerClick={handleMakerClick} 
+            isCurrent={isCurrent} 
+            setIsCurrent={setIsCurrent} 
+            isCurrentView={isCurrentView}/>
         ))}
       </Map>
     </div>

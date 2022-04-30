@@ -32,6 +32,7 @@ const BusinessType = new GraphQLObjectType({
     id: {type: GraphQLString},
     name: {type: GraphQLString},
     image_url: {type: GraphQLString},
+    url: {type: GraphQLString},
     is_closed: {type: GraphQLBoolean},
     review_count: {type: GraphQLFloat},
     rating: {type: GraphQLFloat},
