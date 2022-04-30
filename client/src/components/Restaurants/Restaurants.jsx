@@ -11,23 +11,26 @@ mapboxgl.workerClass = require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worke
 
 const RESTAURANTS_DATA = gql`
   query RestasurantData {
-      restaurants{
-        id
-        name
-        image_url
-        is_closed
-        review_count
-        rating
-        coordinates {
-          longitude
-          latitude
-        }
-        price
-        location {
-          display_address
-        }
-        display_phone
+    restaurants {
+      id
+      name
+      image_url
+      is_closed
+      review_count
+      rating
+      coordinates {
+        longitude
+        latitude
       }
+      price
+      location {
+        display_address
+      }
+      display_phone
+    }
+    opens {
+      id
+    }
   }
 `
 
@@ -38,7 +41,7 @@ const Restaurants = () => {
   const [ isCurrentView, setCurrentView ] = useState({
     latitude: 49.24966,
     longitude: -123.11934,
-    zoom: 4
+    zoom: 10
   })
 
   const [ isCurrent, setIsCurrent ] = useState(null);
@@ -63,8 +66,8 @@ const Restaurants = () => {
         }}
         style={{width: '100%', height: '100%'}}
         mapStyle="mapbox://styles/mapbox/streets-v9">
-        {data.restaurants.map(data => (
-          <Pins data={data} handleMakerClick={handleMakerClick} isCurrent={isCurrent} setIsCurrent={setIsCurrent}/>
+        {data.restaurants.map(restaurant => (
+          <Pins data={restaurant} opens={data.opens} handleMakerClick={handleMakerClick} isCurrent={isCurrent} setIsCurrent={setIsCurrent} isCurrentView={isCurrentView}/>
         ))}
       </Map>
     </div>

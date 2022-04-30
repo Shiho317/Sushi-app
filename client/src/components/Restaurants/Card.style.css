@@ -1,53 +1,68 @@
+.card {
+  width: 20rem;
+  height: 15rem;
+  background: var(--base-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
 .image-wrap{
-  
+  width: 8rem;
+  height: 8rem;
+  background: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
 
 .image-wrap img{
-
+  width: 100%;
+  height: 100%;
 }
 
 .restaurant-details {
-
+  width: 10rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
 .restaurant-details h3{
-
+  color: var(--blue-color);
 }
 
 .restaurant-reviews {
   color: yellow;
   display: flex;
   gap: 0.5rem;
+  align-items: center;
 }
 
 .restaurant-reviews p{
   color: var(--black-color);
 }
 
-.restaurant-open {
-  
-}
-
-.restaurant-open p{
-
-}
-
-.restaurant-address {
-  
-}
-
 .restaurant-address p{
-
+  color: var(--black-color);
 }
 
 .isClosed {
-  color: red;
+  color: var(--black-color);
 }
 
 .isOpen {
-  color: green;
+  color: var(--lightblue-color);
 }
 
 .price-rage {
-  color: green;
+  color: var(--lightblue-color);
+}
+
+.favorite{
+  color: var(--blue-color);
+  font-size: 1.2rem;
+  text-align: end;
 }

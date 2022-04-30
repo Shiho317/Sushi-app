@@ -42,6 +42,13 @@ const BusinessType = new GraphQLObjectType({
   })
 })
 
+const OpensType = new GraphQLObjectType({
+  name: 'OpensType',
+  fields: () => ({
+    id: {type: GraphQLString}
+  })
+})
+
 const RootQueryType = new GraphQLObjectType({
   name: 'RootQueryType',
   fields: {
@@ -55,6 +62,18 @@ const RootQueryType = new GraphQLObjectType({
             }
           })
           .then(res => res.data.businesses)
+      }
+    },
+    opens: {
+      type: new GraphQLList(OpensType),
+      resolve(parent, args) {
+        return axios
+        .get('https://api.yelp.com/v3/businesses/search?term=sushi&location=Vancouver&open_now=true', {
+          headers: {
+            'Authorization': `Bearer ${process.env.YELP_API_KEY}`
+          }
+        })
+        .then(res => res.data.businesses)
       }
     }
   }

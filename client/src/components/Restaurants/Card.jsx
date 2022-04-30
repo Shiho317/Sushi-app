@@ -1,10 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Popup } from 'react-map-gl';
-import { AiFillStar } from 'react-icons/ai';
+import { AiFillStar, AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
+import './Card.style.css'
 
-const Card = ({data, id, lat, long, setIsCurrent}) => {
+const Card = ({data, opens, id, lat, long, setIsCurrent}) => {
 
   const address = data.location.display_address.join();
+
+  const currentOpenId = opens.map(open => {
+    return open.id
+  });
+
+  const addToFavourite = () => {
+
+  }
+
+  const [ isFavourite, setIsFavourite ] = useState(false);
 
   return (
     <Popup
@@ -15,7 +26,7 @@ const Card = ({data, id, lat, long, setIsCurrent}) => {
         closeButton={true}
         closeOnClick={false}
         onClose={() => setIsCurrent(null)}>
-      <Card>
+      <div className='card'>
         <div className='image-wrap'>
           <img src={data.image_url} alt='restaurant-img'/>
         </div>
@@ -28,18 +39,25 @@ const Card = ({data, id, lat, long, setIsCurrent}) => {
             <p className='price-rage'>{data.price}</p>
           </div>
           <div className='restaurant-open'>
-            {data.is_closed ? (
-              <p className='isClosed'>Closed</p>
-            ) : (
+            {currentOpenId.includes(data.id) ? (
               <p className='isOpen'>Open</p>
+            ) : (
+              <p className='isClosed'>Closed</p>
+            )}
+            {data.is_closed && (
+              <p>(permanently)</p>
             )}
           </div>
           <div className='restaurant-address'>
-            <p>Address:</p>
             <p>{address}</p>
           </div>
+          <div className='favorite' onClick={() => addToFavourite()}>
+            {isFavourite ?
+              <AiFillHeart/>
+              : <AiOutlineHeart/> }
+          </div>
         </div>
-      </Card>
+      </div>
     </Popup>
   )
 }
