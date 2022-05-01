@@ -5,8 +5,9 @@ import './Header.style.css';
 
 const Header = () => {
 
-  const { loggedIn, setLoggedIn, currentUser, myStorage } = useContext(AppContext);
+  const { loggedIn, setLoggedIn, userObj, myStorage } = useContext(AppContext);
   const navigate = useNavigate();
+  const currentUser = JSON.parse(userObj);
 
   const loggedOut = () => {
     const currUserObj = {
