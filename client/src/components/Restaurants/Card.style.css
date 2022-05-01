@@ -61,7 +61,8 @@
   color: var(--lightblue-color);
 }
 
-.favorite{
+.unfavourite,
+.favourite{
   color: var(--blue-color);
   font-size: 1.2rem;
   text-align: end;

@@ -1,21 +1,12 @@
-import React, { useContext, useEffect } from 'react'
-import { Link, useLocation, useParams } from 'react-router-dom';
+import React, { useContext } from 'react'
+import { Link, useNavigate } from 'react-router-dom';
 import { AppContext } from '../../App';
 import './Header.style.css';
 
 const Header = () => {
 
   const { loggedIn, setLoggedIn, currentUser, myStorage } = useContext(AppContext);
-  const location = useLocation()
-  const pathname = location.pathname.replace('/','')
-
-  useEffect(() => {
-    if(pathname.length > 0){
-      setLoggedIn(true)
-    }else{
-      setLoggedIn(false)
-    }
-  },[])
+  const navigate = useNavigate();
 
   const loggedOut = () => {
     const currUserObj = {
@@ -24,9 +15,10 @@ const Header = () => {
       id: ''
     }
     myStorage.setItem("user", JSON.stringify(currUserObj));
+    setLoggedIn(false)
     alert("You have successfully logged out.");
     setTimeout(() => {
-      window.location.href = '/'
+      navigate('/')
     },1000)
   }
 

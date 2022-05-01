@@ -1,11 +1,13 @@
 import axios from 'axios';
 import React, { useContext, useRef } from 'react'
+import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../../App';
 import './Login.style.css'
 
 const Login = () => {
 
-  const { myStorage } = useContext(AppContext)
+  const { myStorage, setLoggedIn } = useContext(AppContext);
+  const navigate = useNavigate()
 
   const emailRef = useRef(null)
   const passwordRef = useRef(null);
@@ -26,9 +28,10 @@ const Login = () => {
         id: res.data._id
       }
       myStorage.setItem("user", JSON.stringify(currUserObj));
+      setLoggedIn(true)
       alert("You have successfully logged in.");
       setTimeout(() => {
-        window.location.href = `/${res.data._id}`
+        navigate(`/${res.data._id}`)
       },2000)
     } catch (error) {
       console.log(error);

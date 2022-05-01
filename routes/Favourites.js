@@ -16,13 +16,15 @@ router.post('/add', async(req, res) => {
 //delete favourites
 router.post('/delete', async(req, res) => {
   try {
+    console.log(req.id)
     const removeItem = await Favourites.deleteOne({
-      id: req.id
+      id: req.body.id,
+      email: req.body.email
     });
     if(!removeItem){
       res.status(400).json("This items is already remove from your favourite.")
     }
-    console.log('Removed from your favourite.')
+    console.log(`Removed item from your favourite.`)
   } catch (error) {
     console.log(error)
   }

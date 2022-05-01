@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import './Restaurants.style.css'
 import { useQuery, gql } from '@apollo/client'
 import 'mapbox-gl/dist/mapbox-gl.css';
@@ -47,12 +47,12 @@ const Restaurants = () => {
 
   const [ isCurrent, setIsCurrent ] = useState(null);
 
-  const handleMakerClick = (id, lat, long) => {
+  const handleMakerClick = useCallback((id, lat, long) => {
     setIsCurrent(id);
     setCurrentView({...isCurrentView, latitude: lat, longitude: long})
-  }
+  },[setIsCurrent, isCurrentView])
 
-  const { loading, error, data} = useQuery(RESTAURANTS_DATA)
+  const { loading, error, data } = useQuery(RESTAURANTS_DATA)
   
   
   if(loading) return <p>Loading...</p>

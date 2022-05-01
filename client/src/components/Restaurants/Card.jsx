@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios';
 import { Popup } from 'react-map-gl';
 import { AiFillStar, AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
@@ -16,9 +16,11 @@ const Card = ({data, opens, id, lat, long, setIsCurrent}) => {
   });
 
   const [ favouritesList, setFavouritesList ] = useState([]);
-  const myFavourite = favouritesList.map(list => {
-    return list.email === currentUser.email
-  })
+  const myFavourite = favouritesList.filter(list => list.email === currentUser.email);
+
+  const isFavourite = myFavourite.map(item => {
+    return item.id
+  }).includes(data.id)
 
   const addToFavourite = async(e) => {
     e.preventDefault();
@@ -32,22 +34,10 @@ const Card = ({data, opens, id, lat, long, setIsCurrent}) => {
       url: data.url,
       address
     }
-    const removeItem = {
-      email: currentUser.email,
-      id: data.id
-    }
-    if(!myFavourite.includes(data.id) && loggedIn){
+    if(loggedIn){
       try {
         const res = await axios.post('http://localhost:8888/api/favourites/add', newFavourite);
         setFavouritesList([...favouritesList, res.data])
-      } catch (error) {
-        console.log(error)
-      }
-    }else if(myFavourite.includes(data.id) && loggedIn){
-      try {
-        const res = await axios.post('http://localhost:8888/api/favourites/delete', removeItem);
-        const filtered = favouritesList.filter(list => list.id !== res.data.id)
-        setFavouritesList(filtered)
       } catch (error) {
         console.log(error)
       }
@@ -55,6 +45,37 @@ const Card = ({data, opens, id, lat, long, setIsCurrent}) => {
       alert('Please login.')
     }
   }
+
+  const removeFromFavourite = async(e) => {
+    e.preventDefault();
+
+    console.log(data.id)
+
+    const removeItem = {
+      email: currentUser.email,
+      id: data.id
+    }
+    try {
+      const res = await axios.post('http://localhost:8888/api/favourites/delete', removeItem);
+      const filtered = favouritesList.filter(list => list.id !== res.data.id)
+      setFavouritesList(filtered)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  useEffect(() => {
+    const getMyFavourites = async() => {
+      try {
+        const allFavourites = await axios.get('http://localhost:8888/api/favourites')
+        setFavouritesList(allFavourites.data)
+        console.log(allFavourites.data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    getMyFavourites();
+  },[])
 
   return (
     <Popup
@@ -90,11 +111,15 @@ const Card = ({data, opens, id, lat, long, setIsCurrent}) => {
           <div className='restaurant-address'>
             <p>{address}</p>
           </div>
-          <div className='favorite' onClick={addToFavourite}>
-            {myFavourite.includes(data.id) ?
+          {loggedIn && isFavourite ? (
+            <div className='unfavourite' onClick={removeFromFavourite}>
               <AiFillHeart/>
-              : <AiOutlineHeart/> }
-          </div>
+            </div>
+          ) : (
+            <div className='favourite' onClick={addToFavourite}>
+              <AiOutlineHeart/>
+            </div>
+            )}
         </div>
       </div>
     </Popup>
