@@ -6,7 +6,7 @@
 }
 
 .signup {
-  width: 90%;
+  max-width: 18rem;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -71,9 +71,15 @@
   transition: all 0.3s ease;
 }
 
+@media screen and (min-width: 768px) {
+  .signup {
+    max-width: 25rem;
+  }
+}
+
 @media screen and (min-width: 1024px) {
   .signup {
-    width: 60%;
+    max-width: 60%;
     flex-direction: row;
   }
   
