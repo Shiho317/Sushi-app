@@ -25,13 +25,12 @@ function App() {
 
   const myStorage = window.localStorage;
   const userObj = myStorage.getItem("user")
-  const currentUser = userObj;
 
   const [ loggedIn, setLoggedIn ] = useState(false);
 
   return (
     <ApolloProvider client={client}>
-      <AppContext.Provider value={{currentUser, myStorage, loggedIn, setLoggedIn}}>
+      <AppContext.Provider value={{userObj, myStorage, loggedIn, setLoggedIn}}>
         <Router>
           <Header/>
           <Routes>

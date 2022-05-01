@@ -7,7 +7,8 @@ import { AppContext } from '../../App';
 
 const Card = ({data, opens, id, lat, long, setIsCurrent}) => {
 
-  const { loggedIn, currentUser } = useContext(AppContext)
+  const { loggedIn, userObj, } = useContext(AppContext);
+  const currentUser = JSON.parse(userObj);
 
   const address = data.location.display_address.join();
 

@@ -33,7 +33,12 @@ router.post('/delete', async(req, res) => {
 //get all favourites
 router.get('/', async(req, res) => {
   try {
-    const favourites = await Favourites.find();
+    const favourites = await Favourites.find().sort({
+      email: req.body.email
+    });
+    if(!favourites){
+      res.status(400).json("NO item in your SUKI.")
+    }
     res.status(200).json(favourites)
   } catch (error) {
     res.status(500).json(error)

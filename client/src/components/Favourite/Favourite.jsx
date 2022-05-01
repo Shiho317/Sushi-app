@@ -1,24 +1,29 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios'
 import Item from './Item'
 import { GiHeartburn } from 'react-icons/gi'
 import './Favourite.style.css'
+import { AppContext } from '../../App'
 
 const Favourite = () => {
+
+  const { userObj } = useContext(AppContext)
+  const currentUser = JSON.parse(userObj);
 
   const [ myFavs, setMyFavs ] = useState([]);
 
   useEffect(() => {
     const getMyFavourites = async() => {
       try {
-        const allFavourites = await axios.get('http://localhost:8888/api/favourites')
+        const allFavourites = await axios.get('http://localhost:8888/api/favourites', currentUser.email)
+        console.log(allFavourites)
         setMyFavs(allFavourites.data);
       } catch (error) {
         console.log(error)
       }
     }
     getMyFavourites();
-  },[])
+  },[currentUser.email])
 
   return (
     <div className='suki-wrapper'>
