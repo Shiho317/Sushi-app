@@ -26,6 +26,13 @@ const LocationType = new GraphQLObjectType({
   })
 })
 
+const CategoryType = new GraphQLObjectType({
+  name: 'CategoryType',
+  fields: () => ({
+    title: {type: GraphQLString}
+  })
+})
+
 const BusinessType = new GraphQLObjectType({
   name: 'BusinessType',
   fields: () => ({
@@ -39,7 +46,8 @@ const BusinessType = new GraphQLObjectType({
     coordinates: {type: CoordinatesType},
     price: {type: GraphQLString},
     location: {type: LocationType},
-    display_phone: {type: GraphQLString}
+    display_phone: {type: GraphQLString},
+    categories: {type: GraphQLList(CategoryType)}
   })
 })
 

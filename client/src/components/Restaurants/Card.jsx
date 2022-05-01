@@ -24,6 +24,10 @@ const Card = ({data, opens, id, lat, long, setIsCurrent}) => {
 
   const addToFavourite = async(e) => {
     e.preventDefault();
+    const categoriesArr = data.categories.map(category => {
+      return category.title
+    })
+
     const newFavourite = {
       email: currentUser.email,
       id: data.id,
@@ -32,7 +36,8 @@ const Card = ({data, opens, id, lat, long, setIsCurrent}) => {
       rate: data.rating,
       price: data.price,
       url: data.url,
-      address
+      address,
+      categories: categoriesArr
     }
     if(loggedIn){
       try {
@@ -48,8 +53,6 @@ const Card = ({data, opens, id, lat, long, setIsCurrent}) => {
 
   const removeFromFavourite = async(e) => {
     e.preventDefault();
-
-    console.log(data.id)
 
     const removeItem = {
       email: currentUser.email,
@@ -75,7 +78,7 @@ const Card = ({data, opens, id, lat, long, setIsCurrent}) => {
       }
     }
     getMyFavourites();
-  },[])
+  },[setFavouritesList])
 
   return (
     <Popup

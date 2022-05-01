@@ -8,7 +8,7 @@ const FavouriteSchema = new mongoose.Schema(
     },
     image: {
       type: String,
-      required: true
+      required: false
     },
     name: {
       type: String,
@@ -16,19 +16,23 @@ const FavouriteSchema = new mongoose.Schema(
     },
     rate: {
       type: Number,
-      required: true
+      required: false
     },
     price: {
       type: String,
-      required: true
+      required: false
     },
     url: {
       type: String,
       required: true
     },
-    address : {
+    address: {
       type: String,
-      required: true
+      required: false
+    },
+    categories: {
+      type: [String],
+      required: false
     }
   },
   {timestamps: true}

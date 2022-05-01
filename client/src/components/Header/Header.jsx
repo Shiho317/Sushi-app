@@ -42,7 +42,7 @@ const Header = () => {
           <li>
             {loggedIn ? (
               <Link to={`/favourite/${currentUser.id}`}>
-                FAVOURITE
+                SUKI
               </Link>
             ) : (
               <Link to='/signup'>

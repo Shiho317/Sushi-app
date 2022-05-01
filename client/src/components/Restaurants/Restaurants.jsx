@@ -28,6 +28,9 @@ const RESTAURANTS_DATA = gql`
         display_address
       }
       display_phone
+      categories {
+        title
+      }
     }
     opens {
       id
