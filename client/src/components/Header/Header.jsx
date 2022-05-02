@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import { AppContext } from '../../App';
 import './Header.style.css';
+import headerLogo from '../../images/header-logo.svg';
 
 const Header = () => {
 
@@ -26,7 +27,8 @@ const Header = () => {
   return (
     <div className='header'>
       <div className='header-logo'>
-    </div>
+        <img src={headerLogo} alt='logo'/>
+      </div>
       <nav className='header-nav'>
         <ul>
           <li>

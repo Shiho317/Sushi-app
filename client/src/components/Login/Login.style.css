@@ -6,10 +6,10 @@
 }
 
 .login {
-  width: 60%;
+  max-width: 18rem;
   margin: 0 auto;
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: column;
   background: var(--lightblue-color);
   height: 70vh;
   border-radius: 10px;
@@ -33,7 +33,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 1rem;
+  gap: 0.5rem;
 }
 
 .login-form label {
@@ -43,13 +43,14 @@
   justify-content: space-between;
   align-items: center;
   color: var(--black-color);
+  font-size: 0.8rem;
 }
 
 .login-form input {
-  width: 15rem;
+  width: 10rem;
   outline: none;
   border: none;
-  padding: 0.5rem;
+  padding: 0.3rem 0.5rem;
 }
 
 .login-form button{
@@ -66,4 +67,34 @@
 .login-form button:hover{
   background: var(--black-color);
   transition: all 0.3s ease;
+}
+
+@media screen and (min-width: 768px) {
+  .login {
+    max-width: 25rem;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .login {
+    max-width: 60%;
+    flex-direction: row-reverse;
+  }
+
+  .login-img img{
+    height: 100%;
+  }
+  
+  .login-form {
+    gap: 1rem;
+  }
+  
+  .login-form label {
+    font-size: 1rem;
+  }
+  
+  .login-form input {
+    width: 15rem;
+    padding: 0.5rem;
+  }
 }
