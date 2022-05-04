@@ -21,7 +21,7 @@ const Login = () => {
     };
 
     try {
-      const res = await axios.post('/api/users/login', user)
+      const res = await axios.post('http://localhost:8888/api/users/login', user)
       const currUserObj = {
         name: res.data.username,
         email: res.data.email,

@@ -15,7 +15,7 @@ const Favourite = () => {
   useEffect(() => {
     const getMyFavourites = async() => {
       try {
-        const allFavourites = await axios.get('/api/favourites', currentUser.email)
+        const allFavourites = await axios.get('http://localhost:8888/api/favourites', currentUser.email)
         console.log(allFavourites)
         setMyFavs(allFavourites.data);
       } catch (error) {
