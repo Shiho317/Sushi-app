@@ -16,7 +16,7 @@ https://cryptic-oasis-17891.herokuapp.com/
 
 ## Languages/Frameworks
 
-`react`, `node.js`,  `css`, `graphql`, `mongodb`
+`react`, `node.js`, `express.js`, `css`, `graphql`, `mongodb`
 
 ## Published
 
@@ -24,6 +24,6 @@ https://cryptic-oasis-17891.herokuapp.com/
 
 ## About
 :white_check_mark: Map application which provides location of sushi restaurant in Vancouver, CA.  
-:white_check_mark: Using graphQL to fetch Yelp API for datas about sushi restaurants.
-:white_check_mark: Click a pin to see a restaurant detail and add to your favourite.
-:white_check_mark: Using MongoDB to store database for account and favourite restaurants.  
+:white_check_mark: Using graphQL to fetch Yelp API for datas about sushi restaurants.  
+:white_check_mark: Click a pin to see a restaurant detail and add to your favourite.  
+:white_check_mark: Using MongoDB to store database for account and favourite restaurants.   
