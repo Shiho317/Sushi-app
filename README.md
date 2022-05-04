@@ -1,4 +1,4 @@
-# SUKI SUSHI
+# SUKI SUSHI :sushi:
 
 ### Contents
 - Restaurants map
