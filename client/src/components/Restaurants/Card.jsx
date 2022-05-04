@@ -115,7 +115,9 @@ const Card = ({data, opens, id, lat, long, setIsCurrent}) => {
               data={data} 
               currentUser={currentUser}/>
           ) : (
-            <AiOutlineHeart onClick={() => alert('Please login.')}/>
+            <div className='favourite' onClick={() => alert('Please login.')}>
+              <AiOutlineHeart/>
+            </div>
           )}
         </div>
       </div>
