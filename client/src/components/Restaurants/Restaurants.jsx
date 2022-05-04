@@ -41,7 +41,7 @@ const RESTAURANTS_DATA = gql`
 
 const Restaurants = () => {
 
-  const mapboxToken = process.env.REACT_APP_MAPBOX_TOKEN;
+  const mapboxToken = 'pk.eyJ1Ijoic2hpaWk5NyIsImEiOiJjbDFzYmJiZmUyMTJjM2V1azh2aHdkZGdhIn0.52aU_6oKIc9j5FIBubjfKQ';
 
   const [ isCurrentView, setCurrentView ] = useState({
     latitude: 49.24966,

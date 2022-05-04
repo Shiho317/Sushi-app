@@ -4,7 +4,7 @@ import { Popup } from 'react-map-gl';
 import { AiFillStar, AiOutlineHeart } from 'react-icons/ai';
 import './Card.style.css'
 import { AppContext } from '../../App';
-import LikedButton from './LikedButton';
+import LikedButton from './LikedButton'
 
 const Card = ({data, opens, id, lat, long, setIsCurrent}) => {
 
@@ -18,7 +18,7 @@ const Card = ({data, opens, id, lat, long, setIsCurrent}) => {
   });
 
   const [ favouritesList, setFavouritesList ] = useState([]);
-  
+
   const addToFavourite = async(e) => {
     e.preventDefault();
     const categoriesArr = data.categories.map(category => {
@@ -114,7 +114,9 @@ const Card = ({data, opens, id, lat, long, setIsCurrent}) => {
               data={data} 
               currentUser={currentUser}/>
           ) : (
-            <AiOutlineHeart onClick={() => alert('Please login.')}/>
+            <div className='favourite' onClick={() => alert('Please login.')}>
+              <AiOutlineHeart/>
+            </div>
           )}
         </div>
       </div>
