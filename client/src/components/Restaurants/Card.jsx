@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react'
 import axios from 'axios';
 import { Popup } from 'react-map-gl';
-import { AiFillStar, AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
+import { AiFillStar, AiOutlineHeart } from 'react-icons/ai';
 import './Card.style.css'
 import { AppContext } from '../../App';
+import LikedButton from './LikedButton'
 
 const Card = ({data, opens, id, lat, long, setIsCurrent}) => {
 
@@ -17,12 +18,6 @@ const Card = ({data, opens, id, lat, long, setIsCurrent}) => {
   });
 
   const [ favouritesList, setFavouritesList ] = useState([]);
-  
-  const myFavourite = favouritesList.filter(list => list.email === currentUser.email);
-
-  const isFavourite = myFavourite.map(item => {
-    return item.id
-  }).includes(data.id)
 
   const addToFavourite = async(e) => {
     e.preventDefault();
@@ -41,16 +36,12 @@ const Card = ({data, opens, id, lat, long, setIsCurrent}) => {
       address,
       categories: categoriesArr
     }
-    if(loggedIn){
       try {
         const res = await axios.post('/api/favourites/add', newFavourite);
         setFavouritesList([...favouritesList, res.data])
       } catch (error) {
         console.log(error)
       }
-    }else{
-      alert('Please login.')
-    }
   }
 
   const removeFromFavourite = async(e) => {
@@ -116,15 +107,16 @@ const Card = ({data, opens, id, lat, long, setIsCurrent}) => {
           <div className='restaurant-address'>
             <p>{address}</p>
           </div>
-          {loggedIn && isFavourite ? (
-            <div className='unfavourite' onClick={removeFromFavourite}>
-              <AiFillHeart/>
-            </div>
+          {loggedIn && favouritesList.length > 0 ? (
+            <LikedButton 
+              favouritesList={favouritesList} 
+              addToFavourite={addToFavourite} 
+              removeFromFavourite={removeFromFavourite} 
+              data={data} 
+              currentUser={currentUser}/>
           ) : (
-            <div className='favourite' onClick={addToFavourite}>
-              <AiOutlineHeart/>
-            </div>
-            )}
+            <AiOutlineHeart onClick={() => alert('Please login.')}/>
+          )}
         </div>
       </div>
     </Popup>
