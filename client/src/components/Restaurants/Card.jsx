@@ -16,12 +16,8 @@ const Card = ({data, opens, id, lat, long, setIsCurrent}) => {
     return open.id
   });
 
-  const [ favouritesList, setFavouritesList ] = useState([
-    {
-      email: '',
-      id: ''
-    }
-  ]);
+  const [ favouritesList, setFavouritesList ] = useState([]);
+  
   const myFavourite = favouritesList.filter(list => list.email === currentUser.email);
 
   const isFavourite = myFavourite.map(item => {
