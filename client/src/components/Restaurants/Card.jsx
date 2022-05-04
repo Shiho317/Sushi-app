@@ -42,7 +42,7 @@ const Card = ({data, opens, id, lat, long, setIsCurrent}) => {
     }
     if(loggedIn){
       try {
-        const res = await axios.post('http://localhost:8888/api/favourites/add', newFavourite);
+        const res = await axios.post('/api/favourites/add', newFavourite);
         setFavouritesList([...favouritesList, res.data])
       } catch (error) {
         console.log(error)
@@ -60,7 +60,7 @@ const Card = ({data, opens, id, lat, long, setIsCurrent}) => {
       id: data.id
     }
     try {
-      const res = await axios.post('http://localhost:8888/api/favourites/delete', removeItem);
+      const res = await axios.post('/api/favourites/delete', removeItem);
       const filtered = favouritesList.filter(list => list.id !== res.data.id)
       setFavouritesList(filtered)
     } catch (error) {
@@ -71,7 +71,7 @@ const Card = ({data, opens, id, lat, long, setIsCurrent}) => {
   useEffect(() => {
     const getMyFavourites = async() => {
       try {
-        const allFavourites = await axios.get('http://localhost:8888/api/favourites')
+        const allFavourites = await axios.get('/api/favourites')
         setFavouritesList(allFavourites.data)
         console.log(allFavourites.data)
       } catch (error) {

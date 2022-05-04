@@ -19,7 +19,7 @@ const SignUp = () => {
         password: userpasswordRef.current.value
       }
       try {
-        await axios.post('http://localhost:8888/api/users/signup', newUser);
+        await axios.post('/api/users/signup', newUser);
         // usernameRef.current.value = '';
         // useremailRef.current.value = '';
         // userpasswordRef.current.value = '';

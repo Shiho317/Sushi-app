@@ -88,24 +88,6 @@ const RootQueryType = new GraphQLObjectType({
   }
 });
 
-// const RootQueryType = new GraphQLObjectType({
-//   name: 'RootQueryType',
-//   fields: {
-//     businesses: {
-//       type: new GraphQLList(BusinessType),
-//       resolve(parent, args) {
-//         return axios
-//           .get('https://api.yelp.com/v3/businesses/search?term=sushi&location=Vancouver', {
-//             headers: {
-//               'Authorization': `Bearer ${process.env.YELP_API_KEY}`
-//             }
-//           })
-//           .then(res => res.data)
-//       }
-//     }
-//   }
-// });
-
 module.exports = new GraphQLSchema({
   query: RootQueryType
 });

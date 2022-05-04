@@ -15,7 +15,7 @@ import SignUp from './components/SignUp/SignUp';
 import Favourite from './components/Favourite/Favourite';
 
 const client = new ApolloClient({
-  uri: 'http://localhost:8888/graphql',
+  uri: '/graphql',
   cache: new InMemoryCache()
 });
 

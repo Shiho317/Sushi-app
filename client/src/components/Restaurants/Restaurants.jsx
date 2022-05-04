@@ -5,6 +5,7 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import Map from 'react-map-gl';
 import mapboxgl from "mapbox-gl"; // This is a dependency of react-map-gl even if you didn't explicitly install it
 import Pins from './Pins';
+import loadingImg from '../../images/sushi-loading.gif';
 
 // eslint-disable-next-line import/no-webpack-loader-syntax
 mapboxgl.workerClass = require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
@@ -58,7 +59,12 @@ const Restaurants = () => {
   const { loading, error, data } = useQuery(RESTAURANTS_DATA)
   
   
-  if(loading) return <p>Loading...</p>
+  if(loading) return (
+    <div className='loading'>
+      <img src={loadingImg} alt='loading-img'/>
+    </div>
+  )
+
   if(error) return <p>Something went wrong.</p>
 
   return (
