@@ -1,53 +1,57 @@
-const express = require('express');
+const express = require("express");
 const app = express();
-const cors = require('cors');
-const dotenv = require('dotenv');
-const { graphqlHTTP } = require('express-graphql');
-const schema = require('./schema');
-const mongoose = require('mongoose');
-const userRoute = require('./routes/Users');
-const favouriteRoute = require('./routes/Favourites');
+const cors = require("cors");
+const dotenv = require("dotenv");
+const { graphqlHTTP } = require("express-graphql");
+const schema = require("./schema");
+const mongoose = require("mongoose");
+const userRoute = require("./routes/Users");
+const favouriteRoute = require("./routes/Favourites");
 
 dotenv.config();
 
 app.use(express.json());
 
-mongoose.connect(process.env.MONGO_DB_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-}).then(() => console.log('mongoDB connected.'))
-.catch(err => console.log(err));
+mongoose
+  .connect(process.env.MONGO_DB_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("mongoDB connected."))
+  .catch((err) => console.log(err));
 
 app.use(function (req, res, next) {
   //Enabling CORS
   res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
   next();
 });
 
-
-app.use('/api/users', userRoute);
-app.use('/api/favourites', favouriteRoute);
+app.use("/api/users", userRoute);
+app.use("/api/favourites", favouriteRoute);
 
 app.use(cors());
-app.use(express.static('public'));
+app.use(express.static("public"));
 
 app.use(
-  '/graphql',
+  "/graphql",
   graphqlHTTP({
     schema,
-    graphiql: true
+    graphiql: true,
   })
 );
 
-if(process.env.NODE_ENV === 'production'){
-  app.use(express.static('client/build'));
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
 
-  app.get('*', (req, res) => {
-    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
-  })
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+  });
 }
 
 const port = process.env.PORT || 8888;
 
-app.listen(port, () => console.log(`server is listening at ${port}.`))
+app.listen(port, () => console.log(`server is listening at ${port}.`));

@@ -1,45 +1,45 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const FavouriteSchema = new mongoose.Schema(
   {
     email: {
       type: String,
-      required: true
+      required: true,
     },
     id: {
       type: String,
-      required: true
+      required: true,
     },
     image: {
       type: String,
-      required: false
+      required: false,
     },
     name: {
       type: String,
-      required: true
+      required: true,
     },
     rate: {
       type: Number,
-      required: false
+      required: false,
     },
     price: {
       type: String,
-      required: false
+      required: false,
     },
     url: {
       type: String,
-      required: true
+      required: true,
     },
     address: {
       type: String,
-      required: false
+      required: false,
     },
     categories: {
       type: [String],
-      required: false
-    }
+      required: false,
+    },
   },
-  {timestamps: true}
-)
+  { timestamps: true }
+);
 
-module.exports = mongoose.model('Favourites', FavouriteSchema);
+module.exports = mongoose.model("Favourites", FavouriteSchema);
