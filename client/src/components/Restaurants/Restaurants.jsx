@@ -46,7 +46,7 @@ const Restaurants = () => {
   const [isCurrentView, setCurrentView] = useState({
     latitude: 49.24966,
     longitude: -123.11934,
-    zoom: 10,
+    zoom: 11,
   });
 
   const [isCurrent, setIsCurrent] = useState(null);
