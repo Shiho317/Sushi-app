@@ -10,6 +10,15 @@
   scrollbar-width: none;
 }
 
+.back-home {
+  color: var(--blue-color);
+  font-size: 1.5rem;
+}
+
+.back-home:hover {
+  opacity: 0.8;
+}
+
 .suki-wrapper::-webkit-scrollbar {
   display: none;  /* Chrome, Safari */
 }
@@ -28,6 +37,11 @@
 }
 
 @media screen and (min-width: 1024px) {
+
+  .back-home {
+    font-size: 2rem;
+  }
+
   .header-title {
     font-size: 2rem;
   }

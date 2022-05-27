@@ -31,9 +31,9 @@ router.post("/delete", async (req, res) => {
 });
 
 //get all favourites
-router.get("/", async (req, res) => {
+router.post("/", async (req, res) => {
   try {
-    const favourites = await Favourites.find().sort({
+    const favourites = await Favourites.find({
       email: req.body.email,
     });
     if (!favourites) {

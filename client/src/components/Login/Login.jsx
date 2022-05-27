@@ -31,7 +31,7 @@ const Login = () => {
       alert("You have successfully logged in.");
       setTimeout(() => {
         navigate(`/${res.data._id}`);
-      }, 2000);
+      }, 500);
     } catch (error) {
       console.log(error);
       alert("Something went wrong!");

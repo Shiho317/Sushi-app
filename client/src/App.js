@@ -17,6 +17,7 @@ const client = new ApolloClient({
 export const AppContext = createContext();
 
 function App() {
+
   const myStorage = window.localStorage;
   const userObj = myStorage.getItem("user");
 

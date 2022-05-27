@@ -5,33 +5,28 @@ import "./Header.style.css";
 import headerLogo from "../../images/header-logo.svg";
 
 const Header = () => {
-  const { loggedIn, setLoggedIn, userObj, myStorage } = useContext(AppContext);
+  const { setLoggedIn, userObj, myStorage } = useContext(AppContext);
   const navigate = useNavigate();
   const currentUser = JSON.parse(userObj);
 
   const loggedOut = () => {
-    const currUserObj = {
-      name: "",
-      email: "",
-      id: "",
-    };
-    myStorage.setItem("user", JSON.stringify(currUserObj));
+    myStorage.removeItem("user");
     setLoggedIn(false);
     alert("You have successfully logged out.");
     setTimeout(() => {
       navigate("/");
-    }, 1000);
+    }, 500);
   };
 
   return (
     <div className="header">
-      <div className="header-logo">
+      <Link to='/' className="header-logo">
         <img src={headerLogo} alt="logo" />
-      </div>
+      </Link>
       <nav className="header-nav">
         <ul>
           <li>
-            {loggedIn ? (
+            {currentUser !== null ? (
               <Link to="/" onClick={loggedOut}>
                 LOGOUT
               </Link>
@@ -40,7 +35,7 @@ const Header = () => {
             )}
           </li>
           <li>
-            {loggedIn ? (
+            {currentUser !== null ? (
               <Link to={`/favourite/${currentUser.id}`}>SUKI</Link>
             ) : (
               <Link to="/signup">SIGNUP</Link>

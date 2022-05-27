@@ -1,12 +1,15 @@
 import axios from "axios";
 import React, { useRef } from "react";
 import "./Signup.style.css";
+import { useNavigate } from 'react-router-dom'
 
 const SignUp = () => {
   const usernameRef = useRef(null);
   const useremailRef = useRef(null);
   const userpasswordRef = useRef(null);
   const userconfirmRef = useRef(null);
+
+  const navigate = useNavigate()
 
   const signupSubmit = async (e) => {
     e.preventDefault();
@@ -21,8 +24,8 @@ const SignUp = () => {
         await axios.post("/api/users/signup", newUser);
         alert("You have successfully created account.");
         setTimeout(() => {
-          window.location.href = "/login";
-        }, 1000);
+          navigate("/login")
+        }, 500);
       } catch (error) {
         console.log(error);
         alert("Something went wrong!");
