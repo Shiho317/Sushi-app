@@ -62,7 +62,7 @@ const Card = ({ data, opens, id, lat, long, setIsCurrent }) => {
   useEffect(() => {
     const getMyFavourites = async () => {
       try {
-        const allFavourites = await axios.get("/api/favourites");
+        const allFavourites = await axios.post("/api/favourites", currentUser);
         setFavouritesList(allFavourites.data);
       } catch (error) {
         console.log(error);
