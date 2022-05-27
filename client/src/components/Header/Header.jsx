@@ -18,8 +18,6 @@ const Header = () => {
     }, 500);
   };
 
-  console.log(currentUser)
-
   return (
     <div className="header">
       <Link to='/' className="header-logo">
