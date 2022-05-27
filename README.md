@@ -14,6 +14,10 @@
 
 https://cryptic-oasis-17891.herokuapp.com/
 
+#### demo account
+- `email`: test1@mail.com `password`: test1test1  
+- `email`: test3@mail.com `password`: test3test3  
+
 ## Languages/Frameworks
 
 `react`, `node.js`, `express.js`, `css`, `graphql`, `mongodb`
