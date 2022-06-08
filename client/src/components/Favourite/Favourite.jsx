@@ -28,7 +28,7 @@ const Favourite = () => {
       }
     };
     getMyFavourites();
-  }, []);
+  }, [currentUser]);
 
   return (
     <div className="suki-wrapper">
